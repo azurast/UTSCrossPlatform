@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ loadedProduct.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-img [src]="loadedProduct.imageUrl"></ion-img>
+  <ion-grid class="ion-padding-start">
+    <ion-row>
+      <h3>{{ loadedProduct.name }}</h3>
+    </ion-row>
+    <ion-row>
+      <h6>{{ loadedProduct.price | currency:"IDR":"symbol-narrow":'3.0' }}</h6>
+    </ion-row>
+    <ion-row>
+      <h6>Tersedia : {{ loadedProduct.qty }}</h6>   
+    </ion-row>
+    <ion-item-divider></ion-item-divider>
+    <ion-row>
+      <h6>Tentang Produk</h6>
+    </ion-row>
+  </ion-grid>
+  <div id="detailCPU" class="ion-padding-start" *ngIf="isCPU">
+    <ion-row>
+      <p>Base Clock : {{ loadedProduct.baseClock }}</p>
+    </ion-row>
+    <ion-row>
+      <p>Boost Clock : {{ loadedProduct.boostClock }}</p>
+    </ion-row>
+    <ion-row>
+      <p>Core Count : {{ loadedProduct.coreCount }}</p>
+    </ion-row>
+    <ion-row>
+      <p>Thread Count : {{ loadedProduct.threadCount }}</p>
+    </ion-row>
+  </div>
+  <div id="detailRAM" class="ion-padding-start" *ngIf="isRAM">
+    <ion-row>
+      <p>Speed : {{ loadedProduct.speed }}</p>
+    </ion-row>
+    <ion-row>
+      <p>Size : {{ loadedProduct.size }}</p>
+    </ion-row>
+  </div>
+  <div id="detailMotherboard" class="ion-padding-start" *ngIf="isMotherboard">
+    <ion-row>
+      <p>Chipset : {{ loadedProduct.chipset }}</p>
+    </ion-row>
+    <ion-row>
+      <p>Processor : {{ loadedProduct.processor }}</p>
+    </ion-row>
+  </div>
+</ion-content>

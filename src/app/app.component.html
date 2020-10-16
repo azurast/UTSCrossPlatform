@@ -1,0 +1,32 @@
+<ion-app>
+  <ion-menu side="start" menuId="main">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list id="menuList">
+        <ion-menu-toggle menu="main">
+          <ion-item routerLink="/home">
+            <ion-icon name="home"></ion-icon>
+            <ion-label class="ion-padding-start">Home</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle menu="main">
+          <ion-item routerLink="/admin">
+            <ion-icon name="people"></ion-icon>
+            <ion-label class="ion-padding-start">Admin</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle menu="main">
+          <ion-item routerLink="/about">
+            <ion-icon name="information"></ion-icon>
+            <ion-label class="ion-padding-start">About this App</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
+</ion-app>

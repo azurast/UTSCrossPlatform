@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="container">
+    <form [formGroup]="form">
+      <ion-grid>
+        <ion-item>
+          <ion-label position="stacked">URL Gambar</ion-label>
+          <ion-textarea [value]="loadedProduct.imageUrl" formControlName="imageUrl">{{ loadedProduct.imageURL }}
+          </ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Jenis</ion-label>
+          <ion-select [value]="loadedProduct.type" okText="Okay" cancelText="Dismiss" disabled>
+            <ion-select-option value="cpu">Prosesor</ion-select-option>
+            <ion-select-option value="ram">RAM</ion-select-option>
+            <ion-select-option value="motherboard">Motherboard</ion-select-option>
+            <ion-select-option value="gpu">GPU</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Nama</ion-label>
+          <ion-input formControlName="name" [value]="loadedProduct.name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Model</ion-label>
+          <ion-input formControlName="model" [value]="loadedProduct.model"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Harga (Rp)</ion-label>
+          <ion-input formControlName="price" [value]="loadedProduct.price" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Stok</ion-label>
+          <ion-input formControlName="qty" [value]="loadedProduct.qty" type="number"></ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-text class="ion-padding">Detail Produk</ion-text>
+        </ion-row>
+        <div id="detailCPU" *ngIf="isCPU">
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Base Clock</ion-label>
+                <ion-input formControlName="baseClock" [value]="loadedProduct.baseClock"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Boost Clock</ion-label>
+                <ion-input formControlName="boostClock" [value]="loadedProduct.boostClock"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Core Count</ion-label>
+                <ion-input formControlName="coreCount" [value]="loadedProduct.coreCount"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Thread Count</ion-label>
+                <ion-input formControlName="threadCount" [value]="loadedProduct.threadCount"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div id="detailRAM" *ngIf="isRAM">
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Speed</ion-label>
+                <ion-input formControlName="speed" [value]="loadedProduct.speed"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Size</ion-label>
+                <ion-input formControlName="size" [value]="loadedProduct.size"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div id="detailMotherboard" *ngIf="isMotherboard">
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Chipset</ion-label>
+                <ion-input formControlName="chipset" [value]="loadedProduct.chipset"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Processor</ion-label>
+                <ion-input formControlName="processor" [value]="loadedProduct.processor"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+        <ion-button expand="full" color="warning" (click)="onSubmit()">EDIT</ion-button>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

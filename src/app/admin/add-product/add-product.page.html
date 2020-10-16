@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="container">
+    <form [formGroup]="form">
+      <ion-grid>
+        <ion-item>
+          <ion-label position="stacked">URL Gambar</ion-label>
+          <ion-textarea placeholder="Masukan url gambar produk" formControlName="imageUrl"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Jenis</ion-label>
+          <ion-select value="cpu" okText="Okay" cancelText="Dismiss" formControlName="type" (ionChange)="onChoose($event)">
+            <ion-select-option value="cpu">Prosesor</ion-select-option>
+            <ion-select-option value="ram">RAM</ion-select-option>
+            <ion-select-option value="motherboard">Motherboard</ion-select-option>
+            <ion-select-option value="gpu">GPU</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Nama</ion-label>
+          <ion-input formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Model</ion-label>
+          <ion-input formControlName="model"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Harga (Rp)</ion-label>
+          <ion-input type="number" formControlName="price"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Stok</ion-label>
+          <ion-input type="number" formControlName="qty"></ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-text class="ion-padding" *ngIf="isCPU || isRAM || isMotherboard">Detail Produk</ion-text>
+        </ion-row>
+        <div id="detailCPU" *ngIf="isCPU && !isRAM && !isMotherboard">
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Base Clock</ion-label>
+                <ion-input formControlName="baseClock"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Boost Clock</ion-label>
+                <ion-input formControlName="boostClock"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Core Count</ion-label>
+                <ion-input formControlName="coreCount"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Thread Count</ion-label>
+                <ion-input formControlName="threadCount"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div id="detailRAM" *ngIf="isRAM && !isCPU && !isMotherboard">
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Speed</ion-label>
+                <ion-input formControlName="speed"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Size</ion-label>
+                <ion-input formControlName="size"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div id="detailMotherboard" *ngIf="isMotherboard && !isRAM && !isCPU">
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Chipset</ion-label>
+                <ion-input formControlName="chipset"></ion-input>
+              </ion-item>
+            </ion-col>
+            <ion-col size="6">
+              <ion-item>
+                <ion-label position="stacked">Processor</ion-label>
+                <ion-input formControlName="processor"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </div>
+        <ion-button expand="full" color="success" (click)="onSubmit()">Add</ion-button>
+      </ion-grid>
+    </form>
+  </div>
+</ion-content>

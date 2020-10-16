@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title>
+      Home
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false" menu="main"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="primary">
+      <ion-button (click)="switchView()" *ngIf="!isGridView">
+        <ion-icon name="grid"></ion-icon>
+      </ion-button>
+      <ion-button (click)="switchView()" *ngIf="isGridView">
+        <ion-icon name="list"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <!-- List View -->
+    <ion-list *ngIf="!isGridView">
+      <ion-item *ngFor="let product of products" button detail [routerLink]="['./', product.id]">
+        <ion-thumbnail slot="start">
+          <ion-img [src]="product.imageUrl"></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>{{ product.name }}</h3>
+          <p> {{ product.price | currency:"IDR":"symbol-narrow":'3.0' }} </p>
+          <p>Tersedia : {{ product.qty }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <!-- Grid View -->
+    <div id="gridView">
+      <ion-grid *ngIf="isGridView">
+        <ion-row>
+          <ion-col *ngFor="let product of products" [routerLink]="['./', product.id]" size="6">
+            <ion-card>
+              <ion-img [src]="product.imageUrl"></ion-img>
+              <ion-item>
+                <ion-card-content>
+                  <ion-grid>
+                    <ion-row>
+                      <h3>{{ product.name }}</h3>
+                    </ion-row>
+                    <ion-row>
+                      <p> {{ product.price | currency:"IDR":"symbol-narrow":'3.0' }} </p>
+                    </ion-row>
+                    <ion-row>
+                      <p>Tersedia : {{ product.qty }}</p>
+                    </ion-row>
+                  </ion-grid>
+                </ion-card-content>
+              </ion-item>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>
